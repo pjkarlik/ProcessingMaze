@@ -52,7 +52,8 @@ void setup()
   boxTexture = loadImage("grate_t.png");
   //boxTexture = loadImage("matallo.jpg");
   textureMode(NORMAL);
-  textureWrap(REPEAT); 
+  textureWrap(REPEAT);
+  noStroke();
   cellBlock = createShape(BOX, cellSize);
   cellBlock.setTexture(boxTexture);
 }
@@ -76,7 +77,6 @@ void draw()
 }
 
 void drawBox(int x, int y) {
-    noStroke();
     pushMatrix();
     translate((x * cellSize), (y * cellSize), 0);
     shape(cellBlock);
@@ -88,12 +88,12 @@ void cameraView()
   
   translate(width / 2, height / 2, -20);
     
-  //tempX = random(1,255)>254 ? (width_half / 2 - random(1,width_half)) * 0.2: tempX;
-  //tempY = random(1,255)>254 ? (height_half / 2- random(1,height_half)) * 0.22 : tempY;
-  //camX = camX - (camX - tempX) * 0.1;
-  //camY = camY - (camY - tempY) * 0.1;
+  tempX = random(1,255)>252 ? (width_half / 2 - random(1,width_half)) * 0.5: tempX;
+  tempY = random(1,255)>253 ? (height_half / 2- random(1,height_half)) * 0.75 : tempY;
+  camX = camX - (camX - tempX) * 0.05;
+  camY = camY - (camY - tempY) * 0.05;
 
-  // rotateX(camY * PI / 180);
-  rotateY((frameCount * 0.25) * PI / 180);
-  rotateX(-(frameCount * 0.075) * PI / 180);
+  rotateX(camY * PI / 180);
+  rotateY(camX * PI / 180);
+
 }
